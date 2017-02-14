@@ -3,7 +3,7 @@
 //новое значение переменной text.
 //Ключесое слово final в 10 cтроке запрещает изменения значения 
 //String text для всех объектов данного класса.
-public class Main1 {
+public class Main {
 
     private static class ConsolePrinter implements Runnable {
 
