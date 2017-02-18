@@ -30,25 +30,25 @@ ArrayList<Integer> iterationNumb= new ArrayList<>();
   
   int calc(String Str)   
     {if(Str.indexOf('+')!=-1)
-          {for (String iterationString : Str.split("[\\s+\\+\\-\\*\\/]+", 2)) 
+          {for (String iterationString : Str.split("[\\s+\\+\\-\\*\\/]", 2)) 
               {iterationNumb.add(Integer.parseInt(iterationString));
               }
           return iterationNumb.get(0)+iterationNumb.get(1);
           }
     else if(Str.indexOf('-')!=-1)
-          {for (String iterationString : Str.split("[\\s+\\+\\-\\*\\/]+", 2)) 
+          {for (String iterationString : Str.split("[\\s+\\+\\-\\*\\/]", 2)) 
               {iterationNumb.add(Integer.parseInt(iterationString));
               }
           return iterationNumb.get(0)-iterationNumb.get(1);
           }
     else if(Str.indexOf('*')!=-1)
-          {for (String iterationString : Str.split("[\\s+\\+\\-\\*\\/]+", 2)) 
+          {for (String iterationString : Str.split("[\\s+\\+\\-\\*\\/]", 2)) 
               {iterationNumb.add(Integer.parseInt(iterationString));
               }
           return iterationNumb.get(0)*iterationNumb.get(1);
           }
     else if(Str.indexOf('/')!=-1)
-          {for (String iterationString : Str.split("[\\s+\\+\\-\\*\\/]+", 2)) 
+          {for (String iterationString : Str.split("[\\s+\\+\\-\\*\\/]", 2)) 
               {iterationNumb.add(Integer.parseInt(iterationString));
               }
           return iterationNumb.get(0)/iterationNumb.get(1);
