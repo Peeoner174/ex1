@@ -1,0 +1,57 @@
+/*#include <WiFi101.h>*/ #include <WiFi.h>
+#include <SPI.h>  
+#include <TelegramBot.h>  
+ 
+// Initialize Wifi connection to the router  
+/*char ssid[] = "xxxx";             // your network SSID (name)  
+char pass[] = "yyyy";            // your network key */
+
+const char* ssid     = "your-ssid";   //SSID (Service Set Identifier) is the name of the WiFi network you want to connect to.
+const char* password = "your-password";   //WPA encrypted networks use a password in the form of a string for security.
+
+// Initialize Telegram BOT  
+const char* BotToken = "xxxx";    // your Bot Teken  
+WiFiSSLClient client; //SSL(secure sockets layer); This class allows to create a client that always connects in SSL to the specified IP address and port
+TelegramBot bot(BotToken,client);  
+const int ledPin = 6;  // the number of the LED pin  
+
+void setup() 
+{  
+ Serial.begin(115200);  
+ while (!Serial) {}  //Start running when the serial is open 
+ delay(300);  
+ // attempt to connect to Wifi network:  
+ Serial.print("Connecting Wifi: ");  
+ Serial.println(ssid);  
+ 
+ while (WiFi.begin(ssid, pass) != WL_CONNECTED) //WiFi.begin(Initializes the WiFi library's network settings and provides the current status.)
+       {  
+   Serial.print(".");  
+   delay(500);  
+ }  
+ Serial.println("");  
+ Serial.println("WiFi connected");  
+    /* Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());*/
+ bot.begin();  //Бот начал работу
+ pinMode(ledPin, OUTPUT);  //Задаёт заданный пин как выходной
+}  
+void loop() 
+{  
+ message m = bot.getUpdates(); // Read new messages  //Считывает сообщение, которое посылают в телеграмм
+ if (m.text.equals("On")) //если ввели On
+       {  
+   digitalWrite(ledPin, HIGH);  
+   Serial.println("message received");  //В сериал "сообщение полученно"
+   bot.sendMessage(m.chat_id, "The Led is now ON");  //Посылает сообщение в телеграм пользователю
+ }  
+ else if (m.text.equals("Off")) 
+       {  
+   digitalWrite(ledPin, LOW);  
+   Serial.println("message received");  
+   bot.sendMessage(m.chat_id, "The Led is now OFF");  
+ }  
+}  
+
+
+
