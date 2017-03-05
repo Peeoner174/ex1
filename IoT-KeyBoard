@@ -1,0 +1,245 @@
+int currentIndex=0;//Считает колличество символов введённых пользователем
+
+  const int INDEX=6;
+  int SetPassword[INDEX];
+  int RealPassword[INDEX]={1, 2, 3, 4, 5, 6};
+  
+  //Номера ножек микрокконтроллера
+  const int ROW1=6;
+  const int ROW2=7;
+  const int ROW3=8;
+  const int ROW4=9;
+  const int COLUMN1=10;
+  const int COLUMN2=11;
+  const int COLUMN3=12;
+  const int COLUMN4=13;
+  const int DIOD=3;//Пин к которому подключен диод
+//Переменные которые фиксируют нажатия
+  int colm1, colm2, colm3, colm4;
+  
+  
+  void setup()
+  {//В соответствии с логикой клавиатуры, ROWS-выход, COLUMN-вход
+    pinMode(ROW1,OUTPUT);
+    pinMode(ROW2,OUTPUT);
+    pinMode(ROW3,OUTPUT);
+    pinMode(ROW4,OUTPUT);
+    
+    pinMode(COLUMN1,INPUT);
+    pinMode(COLUMN2,INPUT);
+    pinMode(COLUMN3,INPUT);
+    pinMode(COLUMN4,INPUT);
+    
+    pinMode(DIOD,OUTPUT);
+    
+    Serial.begin(9600);  
+    //Для данных ножек задаём уровни начальных сигналов
+    digitalWrite(COLUMN1,HIGH);
+    digitalWrite(COLUMN2,HIGH);
+    digitalWrite(COLUMN3,HIGH);
+    digitalWrite(COLUMN4,HIGH);
+    digitalWrite(DIOD,LOW);
+          }
+          
+  void loop()
+  {  //Программа бегает по строкам клавиатуры и проверят на каждой зажатие кнопки. Для этого ROWS поочерёдно становится LOW,
+    digitalWrite(ROW1,LOW);
+    digitalWrite(ROW2,HIGH);
+    digitalWrite(ROW3,HIGH);
+    digitalWrite(ROW4,HIGH);
+
+    colm1=digitalRead(COLUMN1);
+    colm2=digitalRead(COLUMN2);
+    colm3=digitalRead(COLUMN3);
+    colm4=digitalRead(COLUMN4);
+
+    if(colm1==LOW)
+    {delay(300);
+     digitalWrite(DIOD,HIGH); 
+     delay(400);
+     digitalWrite(DIOD,LOW);
+      if (currentIndex<INDEX)
+               {Serial.println("1");
+                        SetPassword[currentIndex]=1;
+                         currentIndex++;}
+        else 
+          {int result=0;
+            for(int a=0; a<INDEX; a++)
+              {if(SetPassword[a] != RealPassword[a]) result=1; break;}
+            if (result){Serial.println("WRONG PASSWORD"); currentIndex=0;}
+            else   {  Serial.println("UNLOCKED"); currentIndex=0;}
+          }    
+          
+      }
+      
+    else if(colm2==LOW)
+    {delay(300);
+     digitalWrite(DIOD,HIGH); 
+     delay(400);
+     digitalWrite(DIOD,LOW);
+      if (currentIndex<INDEX)
+                {Serial.println("2");
+                        SetPassword[currentIndex]=2;
+                        currentIndex++;}
+        else 
+          {int result=0;
+            for(int a=0; a<INDEX; a++)
+              {if(SetPassword[a] != RealPassword[a]) result=1; break;}
+            if (result){Serial.println("WRONG PASSWORD"); currentIndex=0;}
+            else   {  Serial.println("UNLOCKED"); currentIndex=0;}
+          }    
+          
+      }
+      else if(colm3==LOW)
+      {delay(300);
+       digitalWrite(DIOD,HIGH); 
+       delay(400);
+       digitalWrite(DIOD,LOW);
+        if (currentIndex<INDEX)
+                  {Serial.println("3");
+                          SetPassword[currentIndex]=3;
+                           currentIndex++;}
+          else 
+            {int result=0;
+              for(int a=0; a<INDEX; a++)
+                {if(SetPassword[a] != RealPassword[a]) result=1; break;}
+              if (result){Serial.println("WRONG PASSWORD"); currentIndex=0;}
+              else   {  Serial.println("UNLOCKED"); currentIndex=0;}
+            }    
+            
+        }
+    digitalWrite(ROW1,HIGH);
+    digitalWrite(ROW2,LOW);
+    digitalWrite(ROW3,HIGH);
+    digitalWrite(ROW4,HIGH);
+    
+    colm1=digitalRead(COLUMN1);
+    colm2=digitalRead(COLUMN2);
+    colm3=digitalRead(COLUMN3);
+    colm4=digitalRead(COLUMN4);
+
+    if(colm1==LOW)
+    {delay(300);
+     digitalWrite(DIOD,HIGH); 
+     delay(400);
+     digitalWrite(DIOD,LOW);
+      if (currentIndex<INDEX)
+                {Serial.println("4");
+                        SetPassword[currentIndex]=4;
+                         currentIndex++;}
+        else 
+          {int result=0;
+            for(int a=0; a<INDEX; a++)
+              {if(SetPassword[a] != RealPassword[a]) result=1; break;}
+            if (result){Serial.println("WRONG PASSWORD"); currentIndex=0;}
+            else   {  Serial.println("UNLOCKED"); currentIndex=0;}
+          }    
+          
+      }
+    else if(colm2==LOW)
+    {delay(300);
+     digitalWrite(DIOD,HIGH); 
+     delay(400);
+     digitalWrite(DIOD,LOW);
+      if (currentIndex<INDEX)
+                {Serial.println("5");
+                        SetPassword[currentIndex]=5;
+                         currentIndex++;}
+        else 
+          {int result=0;
+            for(int a=0; a<INDEX; a++)
+              {if(SetPassword[a] != RealPassword[a]) result=1; break;}
+            if (result){Serial.println("WRONG PASSWORD"); currentIndex=0;}
+            else   {  Serial.println("UNLOCKED"); currentIndex=0;}
+          }    
+          
+      }
+
+    else if(colm3==LOW)
+    {delay(300);
+     digitalWrite(DIOD,HIGH); 
+     delay(400);
+     digitalWrite(DIOD,LOW);
+      if (currentIndex<INDEX)
+                {Serial.println("6");
+                        SetPassword[currentIndex]=6;
+                         currentIndex++;}
+        else 
+          {int result=0;
+            for(int a=0; a<INDEX; a++)
+              {if(SetPassword[a] != RealPassword[a]) result=1; break;}
+            if (result){Serial.println("WRONG PASSWORD"); currentIndex=0;}
+            else   {  Serial.println("UNLOCKED"); currentIndex=0;}
+          }    
+          
+      }
+
+    digitalWrite(ROW1,HIGH);
+    digitalWrite(ROW2,HIGH);
+    digitalWrite(ROW3,LOW);
+    digitalWrite(ROW4,HIGH);
+    
+    colm1=digitalRead(COLUMN1);
+    colm2=digitalRead(COLUMN2);
+    colm3=digitalRead(COLUMN3);
+    colm4=digitalRead(COLUMN4);   
+
+    if(colm1==LOW)
+    {delay(300);
+     digitalWrite(DIOD,HIGH); 
+     delay(400);
+     digitalWrite(DIOD,LOW);
+      if (currentIndex<INDEX)
+                {Serial.println("7");
+                        SetPassword[currentIndex]=7;
+                         currentIndex++;}
+        else 
+          {int result=0;
+            for(int a=0; a<INDEX; a++)
+              {if(SetPassword[a] != RealPassword[a]) result=1; break;}
+            if (result){Serial.println("WRONG PASSWORD"); currentIndex=0;}
+            else   {  Serial.println("UNLOCKED"); currentIndex=0;}
+          }    
+          
+      }
+    else if(colm2==LOW)
+    {delay(300);
+     digitalWrite(DIOD,HIGH); 
+     delay(400);
+     digitalWrite(DIOD,LOW);
+      if (currentIndex<INDEX)
+                {Serial.println("8");
+                        SetPassword[currentIndex]=8;
+                         currentIndex++;}
+        else 
+          {int result=0;
+            for(int a=0; a<INDEX; a++)
+              {if(SetPassword[a] != RealPassword[a]) result=1; break;}
+            if (result){Serial.println("WRONG PASSWORD"); currentIndex=0;}
+            else   {  Serial.println("UNLOCKED"); currentIndex=0;}
+          }    
+          
+      }
+
+    else if(colm3==LOW)
+    {delay(300);
+     digitalWrite(DIOD,HIGH); 
+     delay(400);
+     digitalWrite(DIOD,LOW);
+      if (currentIndex<INDEX)
+                {Serial.println("9");
+                        SetPassword[currentIndex]=9;
+                         currentIndex++;}
+        else 
+          {int result=0;
+            for(int a=0; a<INDEX; a++)
+              {if(SetPassword[a] != RealPassword[a]) result=1; break;}
+            if (result){Serial.println("WRONG PASSWORD"); currentIndex=0;}
+            else   {  Serial.println("UNLOCKED"); currentIndex=0;}
+          }    
+          
+      }
+   
+  
+     } 
+
